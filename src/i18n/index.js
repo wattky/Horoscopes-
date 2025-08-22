@@ -1,0 +1,1 @@
+export function t(k){return k}
