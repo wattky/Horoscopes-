@@ -1,36 +1,38 @@
-import fetch from 'node-fetch';
+import OpenAI from "openai"
 
-export async function handler(event) {
-  const { sign, lang } = JSON.parse(event.body);
+const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
-  const systemPrompts = {
-    en: "You are a mystical horoscope AI. Write in poetic yet clear English.",
-    cs: "Jsi mystická AI pro horoskopy. Piš česky, poeticky a srozumitelně.",
-    sk: "Si mystická AI pre horoskopy. Píš po slovensky, poeticky a zrozumiteľne.",
-    pl: "Jesteś mistyczną AI od horoskopów. Pisz po polsku, poetycko i zrozumiale.",
-    hu: "Te egy misztikus horoszkóp AI vagy. Írj magyarul, költőien és érthetően."
-  };
+export const handler = async (event) => {
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method Not Allowed' }
+  }
 
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${process.env.AI_API_KEY}`
-    },
-    body: JSON.stringify({
+  let body
+  try {
+    body = JSON.parse(event.body)
+  } catch {
+    return { statusCode: 400, body: 'Invalid JSON' }
+  }
+
+  const { sign, question } = body
+  if (!sign || !question) {
+    return { statusCode: 400, body: 'Missing sign or question' }
+  }
+
+  try {
+    const response = await client.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
-        { role: "system", content: systemPrompts[lang] || systemPrompts["en"] },
-        { role: "user", content: `Napiš dnešní horoskop pro znamení ${sign}.` }
-      ],
-      max_tokens: 1500,
-      temperature: 0.9
+        { role: "system", content: "You are an astrology assistant." },
+        { role: "user", content: `Give me a horoscope for ${sign} about: ${question}` }
+      ]
     })
-  });
 
-  const data = await response.json();
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ result: data.choices[0].message.content })
-  };
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ result: response.choices[0].message.content })
+    }
+  } catch (err) {
+    return { statusCode: 500, body: 'OpenAI error: ' + err.message }
+  }
 }
