@@ -1,29 +1,31 @@
-
 import Stripe from 'stripe'
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
-export default async (req, context) => {
-  const key = process.env.STRIPE_SECRET_KEY
-  const secret = process.env.STRIPE_WEBHOOK_SECRET
-  if(!key || !secret) return new Response('Missing Stripe env', { status: 500 })
+export const handler = async (event) => {
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method Not Allowed' }
+  }
 
-  const sig = req.headers.get('stripe-signature')
-  const stripe = new Stripe(key, { apiVersion: '2024-06-20' })
-  const rawBody = await req.text()
-  let event
+  const sig = event.headers['stripe-signature']
+  const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET
+
+  let stripeEvent
   try {
-    event = stripe.webhooks.constructEvent(rawBody, sig, secret)
+    stripeEvent = stripe.webhooks.constructEvent(
+      event.body,
+      sig,
+      endpointSecret
+    )
   } catch (err) {
-    return new Response(`Webhook Error: ${err.message}`, { status: 400 })
+    return { statusCode: 400, body: `Webhook Error: ${err.message}` }
   }
 
-  // NOTE: You'll need to map session.customer_email -> auth.users.email -> entitlements.user_id
-  if(event.type === 'checkout.session.completed'){
-    const email = event.data.object.customer_details.email
-    // Netlify cannot query Supabase admin without service key here unless you add it.
-    // Suggestion: forward to a Supabase Function or store mapping in metadata.
+  // Example handling
+  if (stripeEvent.type === 'checkout.session.completed') {
+    const session = stripeEvent.data.object
+    console.log('✅ Payment success for', session.customer_email)
+    // TODO: mark user as premium in Supabase
   }
 
-  return new Response('ok', { status: 200 })
+  return { statusCode: 200, body: JSON.stringify({ received: true }) }
 }
-
-export const config = { path: "/.netlify/functions/stripeWebhook" }
