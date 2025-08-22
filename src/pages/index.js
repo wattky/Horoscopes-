@@ -58,3 +58,8 @@ export { default as HelpFAQ } from './HelpFAQ.jsx';
 export { default as About } from './About.jsx';
 export { default as Privacy } from './Privacy.jsx';
 export { default as Terms } from './Terms.jsx';
+export { default as AcceptInvite } from './AcceptInvite.jsx';
+export { default as AdminDashboard } from './AdminDashboard.jsx';
+export { default as HoroscopeHistory } from './HoroscopeHistory.jsx';
+export { default as Tarot } from './Tarot.jsx';
+
