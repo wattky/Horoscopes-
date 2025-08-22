@@ -1,21 +1,35 @@
+import { createClient } from '@supabase/supabase-js'
 
-export default async (req, context) => {
-  try{
-    const { sign='Aries', lang='en' } = await req.json()
-    const apiKey = process.env.OPENAI_API_KEY
-    if(!apiKey){
-      return new Response(JSON.stringify({ text: `${sign}: (local) Love flows. Choose tenderness today.` }), { status: 200 })
-    }
-    const prompt = `Write an 80-100 word daily love horoscope. language=${lang}, sign=${sign}. Tone: poetic, optimistic, practical.`
-    const r = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type':'application/json' },
-      body: JSON.stringify({ model: 'gpt-4o-mini', messages: [{ role:'user', content: prompt }], temperature: 0.8 })
-    })
-    const j = await r.json()
-    const text = j.choices?.[0]?.message?.content?.trim() || `${sign}: Love flows.`
-    return new Response(JSON.stringify({ text }), { status: 200 })
-  }catch(e){
-    return new Response(JSON.stringify({ error: 'failed' }), { status: 200 })
+export const handler = async (event) => {
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method Not Allowed' }
   }
+
+  let body
+  try {
+    body = JSON.parse(event.body)
+  } catch {
+    return { statusCode: 400, body: 'Invalid JSON' }
+  }
+
+  const { user_id, sign, content } = body
+  if (!user_id || !sign || !content) {
+    return { statusCode: 400, body: 'Missing required fields' }
+  }
+
+  const url = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL
+  const serviceKey = process.env.SUPABASE_SERVICE_KEY
+  if (!url || !serviceKey) {
+    return { statusCode: 500, body: 'Missing Supabase config' }
+  }
+
+  const supabase = createClient(url, serviceKey)
+
+  const { error } = await supabase
+    .from('horoscopes')
+    .insert({ user_id, sign, content, created_at: new Date().toISOString() })
+
+  if (error) return { statusCode: 500, body: 'DB error' }
+
+  return { statusCode: 200, body: JSON.stringify({ ok: true }) }
 }
