@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Optional: custom global styles */
+body {
+  @apply bg-black text-white; /* Example: dark theme */
+}
