@@ -1,5 +1,3 @@
-// src/pages/index.js
-
 export { default as About } from './About.jsx';
 export { default as AcceptInvite } from './AcceptInvite.jsx';
 export { default as Achievements } from './Achievements.jsx';
@@ -33,7 +31,33 @@ export { default as InstantMatch } from './InstantMatch.jsx';
 export { default as Language } from './Language.jsx';
 export { default as LiveAstrologer } from './LiveAstrologer.jsx';
 export { default as LunarPlanner } from './LunarPlanner.jsx';
+export { default as LoveCompatibility } from './LoveCompatibility.jsx';
 export { default as MatchExplanation } from './MatchExplanation.jsx';
+export { default as Meditations } from './Meditations.jsx';
+export { default as MonthlyHoroscope } from './MonthlyHoroscope.jsx';
+export { default as MoodHistory } from './MoodHistory.jsx';
+export { default as MoodTracker } from './MoodTracker.jsx';
+export { default as NoteSharing } from './NoteSharing.jsx';
+export { default as Partners } from './Partners.jsx';
+export { default as Polls } from './Polls.jsx';
+export { default as Premium } from './Premium.jsx';
+export { default as Privacy } from './Privacy.jsx';
+export { default as Profile } from './Profile.jsx';
+export { default as Progressions } from './Progressions.jsx';
+export { default as Rituals } from './Rituals.jsx';
+export { default as Settings } from './Settings.jsx';
+export { default as ShareCards } from './ShareCards.jsx';
+export { default as SharedDiary } from './SharedDiary.jsx';
+export { default as Tarot } from './Tarot.jsx';
+export { default as Terms } from './Terms.jsx';
+export { default as Theme } from './Theme.jsx';
+export { default as Transits } from './Transits.jsx';
+export { default as WeeklyHoroscope } from './WeeklyHoroscope.jsx';
+export { default as YearlyHoroscope } from './YearlyHoroscope.jsx';
+export { default as ZodiacYearbook } from './ZodiacYearbook.jsx';
+
+// Optional fallback page
+export { default as NotFound } from './NotFound.jsx';
 export { default as Meditations } from './Meditations.jsx';
 export { default as MonthlyHoroscope } from './MonthlyHoroscope.jsx';
 export { default as MoodHistory } from './MoodHistory.jsx';
