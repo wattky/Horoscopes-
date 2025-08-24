@@ -38,7 +38,7 @@ export { default as Meditations } from './Meditations.jsx';
 export { default as MonthlyHoroscope } from './MonthlyHoroscope.jsx';
 export { default as MoodHistory } from './MoodHistory.jsx';
 export { default as MoodTracker } from './MoodTracker.jsx';
-export { default as NoteSharing } from './NoteSharing.jsx';
+export { default as NoteShare } from './NoteShare.jsx';
 export { default as Partners } from './Partners.jsx';
 export { default as Polls } from './Polls.jsx';
 export { default as Premium } from './Premium.jsx';
