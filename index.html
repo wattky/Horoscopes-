@@ -3,14 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Horoscopes</title>
+    <title>Horoscopes ✨ Cosmic Love</title>
+    <style>
+      body {
+        margin: 0;
+        background: radial-gradient(circle at top, #1a0033, #000);
+        color: white;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .fallback {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        text-align: center;
+        padding: 2rem;
+      }
+      .fallback h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+      .fallback p {
+        opacity: 0.85;
+        margin-bottom: 1.5rem;
+      }
+      .fallback button,
+      .fallback a {
+        padding: 0.75rem 1.5rem;
+        border-radius: 9999px;
+        border: none;
+        background: linear-gradient(135deg, #ff69b4, #8a2be2);
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
 
-    <!-- Friendly fallback -->
+    <!-- Friendly no-JS fallback -->
     <noscript>
-      <div style="text-align:center; padding:2rem; font-family:sans-serif;">
+      <div class="fallback">
         <h2>✨ Cosmic Love ✨</h2>
         <p>It looks like JavaScript is disabled in your browser.</p>
         <p>Please enable JavaScript to view your horoscope universe 🌌.</p>
@@ -18,23 +55,21 @@
     </noscript>
 
     <script>
-      // If app fails to load after 5s → show fallback
+      // If app fails to load after 5s → show cosmic fallback
       setTimeout(() => {
-        const root = document.getElementById('root');
-        if (!root || root.innerHTML.trim() === '') {
+        const root = document.getElementById("root");
+        if (!root || root.innerHTML.trim() === "") {
           root.innerHTML = `
-            <div style="text-align:center; padding:2rem; font-family:sans-serif;">
+            <div class="fallback">
               <h2>🌠 Oops! Something cosmic went wrong.</h2>
               <p>Our stars didn’t align this time.</p>
-              <button onclick="location.href='/'"
-                style="margin-top:1rem; padding:0.6rem 1.2rem; border-radius:8px; border:none; background:#6c5ce7; color:white; font-size:1rem;">
-                Go Back Home
-              </button>
+              <a href="/">Go Back Home</a>
             </div>
           `;
         }
       }, 5000);
     </script>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
