@@ -1,8 +1,11 @@
+// Core pages
 export { default as Home } from './Home.jsx';
 export { default as DailyHoroscope } from './DailyHoroscope.jsx';
 export { default as WeeklyHoroscope } from './WeeklyHoroscope.jsx';
 export { default as MonthlyHoroscope } from './MonthlyHoroscope.jsx';
 export { default as YearlyHoroscope } from './YearlyHoroscope.jsx';
+
+// Astrology & charts
 export { default as BigThree } from './BigThree.jsx';
 export { default as NatalChart } from './NatalChart.jsx';
 export { default as Transits } from './Transits.jsx';
@@ -10,81 +13,78 @@ export { default as Progressions } from './Progressions.jsx';
 export { default as AstroGlossary } from './AstroGlossary.jsx';
 export { default as FixedStars } from './FixedStars.jsx';
 export { default as AstroCartography } from './AstroCartography.jsx';
+
+// Compatibility
 export { default as InstantMatch } from './InstantMatch.jsx';
 export { default as CompatibilityMatrix } from './CompatibilityMatrix.jsx';
 export { default as MatchExplanation } from './MatchExplanation.jsx';
 export { default as FriendCompatibility } from './FriendCompatibility.jsx';
 export { default as FamilyCompatibility } from './FamilyCompatibility.jsx';
 export { default as GroupCompatibility } from './GroupCompatibility.jsx';
+
+// Rituals & self-care
 export { default as Rituals } from './Rituals.jsx';
 export { default as DailyCard } from './DailyCard.jsx';
 export { default as Affirmations } from './Affirmations.jsx';
 export { default as Meditations } from './Meditations.jsx';
+
+// Mood & diary
 export { default as MoodTracker } from './MoodTracker.jsx';
 export { default as MoodHistory } from './MoodHistory.jsx';
 export { default as SharedDiary } from './SharedDiary.jsx';
 export { default as DreamInterpreter } from './DreamInterpreter.jsx';
+
+// Gamification
 export { default as CosmicChallenges } from './CosmicChallenges.jsx';
 export { default as HabitStreaks } from './HabitStreaks.jsx';
+export { default as Achievements } from './Achievements.jsx';
+
+// Planning & reports
 export { default as LunarPlanner } from './LunarPlanner.jsx';
 export { default as GrowthReport } from './GrowthReport.jsx';
+export { default as HoroscopeHistory } from './HoroscopeHistory.jsx';
+export { default as Tarot } from './Tarot.jsx';
+
+// AI & advanced
 export { default as AdvisorAI } from './AdvisorAI.jsx';
 export { default as Numerology } from './Numerology.jsx';
 export { default as AuraScan } from './AuraScan.jsx';
 export { default as AstroNews } from './AstroNews.jsx';
 export { default as Constellations } from './Constellations.jsx';
+
+// Community
 export { default as CommunityFeed } from './CommunityFeed.jsx';
-export { default as ShareCards } from './ShareCards.jsx';
+export { default as ShareCards } from './ShareCards.jsx'; // ✅ Only once!
 export { default as GroupSessions } from './GroupSessions.jsx';
 export { default as ZodiacYearbook } from './ZodiacYearbook.jsx';
 export { default as Polls } from './Polls.jsx';
+
+// User
 export { default as Profile } from './Profile.jsx';
 export { default as PartnerLink } from './PartnerLink.jsx';
 export { default as Partners } from './Partners.jsx';
 export { default as Notifications } from './Notifications.jsx';
-export { default as Achievements } from './Achievements.jsx';
-export { default as CalendarSync } from './CalendarSync.jsx';
-export { default as ExportData } from './ExportData.jsx';
+export { default as AcceptInvite } from './AcceptInvite.jsx';
+export { default as AdminDashboard } from './AdminDashboard.jsx';
+
+// Shop & premium
 export { default as Premium } from './Premium.jsx';
 export { default as AstroShop } from './AstroShop.jsx';
 export { default as LiveAstrologer } from './LiveAstrologer.jsx';
 export { default as GiftAccess } from './GiftAccess.jsx';
 export { default as Booking } from './Booking.jsx';
 export { default as EventAlerts } from './EventAlerts.jsx';
+
+// Settings
 export { default as Settings } from './Settings.jsx';
 export { default as Language } from './Language.jsx';
 export { default as Theme } from './Theme.jsx';
+
+// Legal & info
 export { default as HelpFAQ } from './HelpFAQ.jsx';
 export { default as About } from './About.jsx';
 export { default as Privacy } from './Privacy.jsx';
 export { default as Terms } from './Terms.jsx';
 
-/* ✅ Missing exports added */
-export { default as AcceptInvite } from './AcceptInvite.jsx';
-export { default as AdminDashboard } from './AdminDashboard.jsx';
-export { default as HoroscopeHistory } from './HoroscopeHistory.jsx';
-export { default as Tarot } from './Tarot.jsx';
-export { default as ShareCards } from './ShareCards.jsx';
-export { default as GroupSessions } from './GroupSessions.jsx';
-export { default as ZodiacYearbook } from './ZodiacYearbook.jsx';
-export { default as Polls } from './Polls.jsx';
-export { default as Profile } from './Profile.jsx';
-export { default as PartnerLink } from './PartnerLink.jsx';
-export { default as Partners } from './Partners.jsx';
-export { default as Notifications } from './Notifications.jsx';
-export { default as Achievements } from './Achievements.jsx';
-export { default as CalendarSync } from './CalendarSync.jsx';
-export { default as ExportData } from './ExportData.jsx';
-export { default as Premium } from './Premium.jsx';
-export { default as AstroShop } from './AstroShop.jsx';
-export { default as LiveAstrologer } from './LiveAstrologer.jsx';
-export { default as GiftAccess } from './GiftAccess.jsx';
-export { default as Booking } from './Booking.jsx';
-export { default as EventAlerts } from './EventAlerts.jsx';
-export { default as Settings } from './Settings.jsx';
-export { default as Language } from './Language.jsx';
-export { default as Theme } from './Theme.jsx';
-export { default as HelpFAQ } from './HelpFAQ.jsx';
-export { default as About } from './About.jsx';
-export { default as Privacy } from './Privacy.jsx';
-export { default as Terms } from './Terms.jsx';
+// Fallback
+export { default as NotFound } from './NotFound.jsx';
