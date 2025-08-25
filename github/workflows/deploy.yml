@@ -1,13 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy Vite App to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ]  # 👈 adjust if your branch is 'master'
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    branches:
+      - main
 
 jobs:
   build:
@@ -27,13 +23,11 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Upload dist
-        uses: actions/upload-pages-artifact@v2
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          path: ./dist
-
-  deploy:
-    needs: build
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
     runs-on: ubuntu-latest
     environment:
       name: github-pages
