@@ -3,7 +3,14 @@
   publish = "dist"
   functions = "netlify/functions"
 
+# Redirect all requests to index.html (SPA support)
 [[redirects]]
-from="/*"
-to="/index.html"
-status=200
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Serve custom fallback page if build/React fails
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "index, follow"
