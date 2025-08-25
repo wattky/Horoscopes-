@@ -1,1 +1,40 @@
-<!doctype html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><div id='root'></div><script type='module' src='/src/main.jsx'></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Horoscopes</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Friendly fallback -->
+    <noscript>
+      <div style="text-align:center; padding:2rem; font-family:sans-serif;">
+        <h2>✨ Cosmic Love ✨</h2>
+        <p>It looks like JavaScript is disabled in your browser.</p>
+        <p>Please enable JavaScript to view your horoscope universe 🌌.</p>
+      </div>
+    </noscript>
+
+    <script>
+      // If app fails to load after 5s → show fallback
+      setTimeout(() => {
+        const root = document.getElementById('root');
+        if (!root || root.innerHTML.trim() === '') {
+          root.innerHTML = `
+            <div style="text-align:center; padding:2rem; font-family:sans-serif;">
+              <h2>🌠 Oops! Something cosmic went wrong.</h2>
+              <p>Our stars didn’t align this time.</p>
+              <button onclick="location.href='/'"
+                style="margin-top:1rem; padding:0.6rem 1.2rem; border-radius:8px; border:none; background:#6c5ce7; color:white; font-size:1rem;">
+                Go Back Home
+              </button>
+            </div>
+          `;
+        }
+      }, 5000);
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
